@@ -84,3 +84,31 @@ export const ProfileDescription = styled.p`
   font-weight: 400;
   color: ${({ theme }) => theme['base-text']};
 `;
+
+export const ProfileBadgesContent = styled.div`
+  margin-top: 24px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  div + div {
+    margin-left: 24px;
+  }
+`;
+
+export const ProfileBadges = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    margin-left: 8px;
+    color: ${({ theme }) => theme['base-subtitle']};
+  }
+
+  svg {
+    color: ${({ theme }) => theme['base-label']};
+  }
+`;
