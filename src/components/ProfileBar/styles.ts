@@ -9,4 +9,23 @@ export const ProfileBarContainer = styled.div`
 
   background-color: ${({ theme }) => theme['base-profile']};
   border-radius: 10px;
+
+  .avatar-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    overflow: hidden;
+    user-select: none;
+    width: 148px;
+    height: 148px;
+    border-radius: 8px;
+
+    &__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+    }
+  }
 `;
