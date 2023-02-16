@@ -32,7 +32,7 @@ export function ProfileBar() {
       <ProfileInfoContent>
         <ProfileInfoGroup>
           <Link
-            href="/profile"
+            href="https://github.com.br/tavareshenrique"
             role="link"
             aria-label="Acesse ao perfil do Github do Henrique Tavares."
           >

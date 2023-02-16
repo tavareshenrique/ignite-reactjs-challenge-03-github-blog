@@ -35,12 +35,30 @@ export const ProfileBarContainer = styled.div`
       border-radius: inherit;
     }
   }
+
+  @media (max-width: 768px) {
+    align-items: center;
+
+    flex-direction: column;
+    height: 25rem;
+
+    .avatar-container {
+      width: 80px;
+      height: 80px;
+
+      margin-bottom: 24px;
+    }
+  }
 `;
 
 export const ProfileInfoContent = styled.div`
   flex: 2;
 
   margin-left: 34px;
+
+  @media (max-width: 768px) {
+    margin-left: 0px;
+  }
 `;
 
 export const ProfileInfoGroup = styled.div`
@@ -57,6 +75,7 @@ export const Link = styled.a`
   justify-content: center;
   color: ${({ theme }) => theme.blue};
 
+  font-size: 0.75rem;
   text-decoration: none;
 
   svg {
@@ -67,6 +86,10 @@ export const Link = styled.a`
   &:hover {
     border-bottom: 1px solid ${({ theme }) => theme.blue};
   }
+
+  @media (max-width: 768px) {
+    font-size: 0.625rem;
+  }
 `;
 
 export const ProfileName = styled.span`
@@ -74,6 +97,10 @@ export const ProfileName = styled.span`
   line-height: 130%;
   font-weight: bold;
   color: ${({ theme }) => theme['base-title']};
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 export const ProfileDescription = styled.p`
@@ -83,6 +110,10 @@ export const ProfileDescription = styled.p`
   line-height: 160%;
   font-weight: 400;
   color: ${({ theme }) => theme['base-text']};
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const ProfileBadgesContent = styled.div`
@@ -95,6 +126,17 @@ export const ProfileBadgesContent = styled.div`
   div + div {
     margin-left: 24px;
   }
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    div + div {
+      margin-left: 0px;
+    }
+  }
 `;
 
 export const ProfileBadges = styled.div`
@@ -105,10 +147,21 @@ export const ProfileBadges = styled.div`
 
   span {
     margin-left: 8px;
+
+    font-size: 1rem;
+    line-height: 160%;
+
     color: ${({ theme }) => theme['base-subtitle']};
   }
 
   svg {
     color: ${({ theme }) => theme['base-label']};
+  }
+
+  @media (max-width: 768px) {
+    span {
+      font-size: 0.75rem;
+      margin-left: 4px;
+    }
   }
 `;
