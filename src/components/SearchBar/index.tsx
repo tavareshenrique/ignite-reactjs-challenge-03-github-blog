@@ -11,7 +11,7 @@ export function SearchBar() {
   return (
     <SearchBarContainer>
       <SearchBarContent>
-        <Label.Root className="LabelRoot" htmlFor="search">
+        <Label.Root className="label-container" htmlFor="search">
           Publicações
         </Label.Root>
 
