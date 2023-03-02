@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@radix-ui/react-avatar': 1.0.1
+  '@radix-ui/react-label': ^2.0.0
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
   '@types/styled-components': 5.1.26
@@ -18,6 +19,7 @@ specifiers:
 
 dependencies:
   '@radix-ui/react-avatar': 1.0.1_biqbaboplfbrettd7655fr4n2y
+  '@radix-ui/react-label': 2.0.0_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.7.1_react@18.2.0
@@ -497,6 +499,18 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.13
       react: 18.2.0
+    dev: false
+
+  /@radix-ui/react-label/2.0.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-7qCcZ3j2VQspWjy+gKR4W+V/z0XueQjeiZnlPOtsyiP9HaS8bfSU7ECoI3bvvdYntQj7NElW7OAYsYRW4MQvCg==}
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      '@babel/runtime': 7.20.13
+      '@radix-ui/react-primitive': 1.0.1_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /@radix-ui/react-primitive/1.0.1_biqbaboplfbrettd7655fr4n2y:

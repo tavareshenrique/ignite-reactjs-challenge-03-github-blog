@@ -1,9 +1,11 @@
-import { ProfileBar } from '../../components';
+import { ProfileBar, SearchBar } from '../../components';
 
 export function Home() {
   return (
     <>
       <ProfileBar />
+
+      <SearchBar />
     </>
   );
 }
