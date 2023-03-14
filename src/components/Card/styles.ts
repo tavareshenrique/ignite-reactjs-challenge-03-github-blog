@@ -7,6 +7,7 @@ export const CardContainer = styled.div`
   padding: 32px;
 
   background-color: ${({ theme }) => theme['base-post']};
+  border-radius: 10px;
 
   @media (max-width: 768px) {
     width: 100%;
