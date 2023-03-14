@@ -1,4 +1,5 @@
-import { ProfileBar, SearchBar } from '../../components';
+import { Card, ProfileBar, SearchBar } from '../../components';
+import { CardSection } from './styles';
 
 export function Home() {
   return (
@@ -6,6 +7,13 @@ export function Home() {
       <ProfileBar />
 
       <SearchBar />
+
+      <CardSection>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </CardSection>
     </>
   );
 }
