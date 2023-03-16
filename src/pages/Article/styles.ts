@@ -1,0 +1,26 @@
+import styled from 'styled-components';
+
+export const ArticleHeader = styled.header`
+  padding: 32px;
+  margin-top: -8rem;
+
+  background-color: ${({ theme }) => theme['base-profile']};
+  border-radius: 10px;
+`;
+
+export const LinksContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+`;
+
+export const Title = styled.h1`
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 130%;
+
+  color: ${({ theme }) => theme['base-title']};
+`;
