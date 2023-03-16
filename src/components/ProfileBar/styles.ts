@@ -68,30 +68,6 @@ export const ProfileInfoGroup = styled.div`
   align-items: center;
 `;
 
-export const Link = styled.a`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  color: ${({ theme }) => theme.blue};
-
-  font-size: 0.75rem;
-  text-decoration: none;
-
-  svg {
-    margin-left: 8px;
-    color: ${({ theme }) => theme.blue};
-  }
-
-  &:hover {
-    border-bottom: 1px solid ${({ theme }) => theme.blue};
-  }
-
-  @media (max-width: 768px) {
-    font-size: 0.625rem;
-  }
-`;
-
 export const ProfileName = styled.span`
   font-size: 1.5rem;
   line-height: 130%;
@@ -113,55 +89,5 @@ export const ProfileDescription = styled.p`
 
   @media (max-width: 768px) {
     font-size: 0.8rem;
-  }
-`;
-
-export const ProfileBadgesContent = styled.div`
-  margin-top: 24px;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  div + div {
-    margin-left: 24px;
-  }
-
-  @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-
-    div + div {
-      margin-left: 0px;
-    }
-  }
-`;
-
-export const ProfileBadges = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
-  span {
-    margin-left: 8px;
-
-    font-size: 1rem;
-    line-height: 160%;
-
-    color: ${({ theme }) => theme['base-subtitle']};
-  }
-
-  svg {
-    color: ${({ theme }) => theme['base-label']};
-  }
-
-  @media (max-width: 768px) {
-    span {
-      font-size: 0.75rem;
-      margin-left: 4px;
-    }
   }
 `;

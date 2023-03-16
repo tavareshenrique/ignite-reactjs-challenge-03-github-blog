@@ -7,15 +7,14 @@ import {
   FaUserFriends,
 } from 'react-icons/fa';
 
+import { Badge, Link } from '../';
+
 import {
   ProfileBarContainer,
   ProfileDescription,
   ProfileInfoContent,
   ProfileInfoGroup,
   ProfileName,
-  Link,
-  ProfileBadgesContent,
-  ProfileBadges,
 } from './styles';
 
 export function ProfileBar() {
@@ -48,20 +47,23 @@ export function ProfileBar() {
           pulvinar vel mass.
         </ProfileDescription>
 
-        <ProfileBadgesContent>
-          <ProfileBadges aria-label="Nome de usuário no Github do Henrique Tavares.">
-            <FaGithub size={16} />
-            <span>tavareshenrique</span>
-          </ProfileBadges>
-          <ProfileBadges aria-label="Nome de organização que o Henrique Tavares trabalha.">
-            <FaBuilding size={16} />
-            <span>Getninjas</span>
-          </ProfileBadges>
-          <ProfileBadges aria-label="Número de seguidores do Henrique Tavares no Github.">
-            <FaUserFriends size={16} />
-            <span>32 seguidores</span>
-          </ProfileBadges>
-        </ProfileBadgesContent>
+        <Badge.Root>
+          <Badge.Badge
+            ariaLabel="Nome de usuário no Github do Henrique Tavares."
+            icon={<FaGithub size={16} />}
+            text="tavareshenrique"
+          />
+          <Badge.Badge
+            ariaLabel="Nome de organização que o Henrique Tavares trabalha."
+            icon={<FaBuilding size={16} />}
+            text="Getninjas"
+          />
+          <Badge.Badge
+            ariaLabel="Número de seguidores do Henrique Tavares no Github."
+            icon={<FaUserFriends size={16} />}
+            text="32 seguidores"
+          />
+        </Badge.Root>
       </ProfileInfoContent>
     </ProfileBarContainer>
   );
