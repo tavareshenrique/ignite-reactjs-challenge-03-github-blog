@@ -24,3 +24,17 @@ export const Title = styled.h1`
 
   color: ${({ theme }) => theme['base-title']};
 `;
+
+export const ArticleBody = styled.main`
+  margin-top: 40px;
+
+  padding: 0 32px;
+
+  p {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 25.6px;
+
+    color: ${({ theme }) => theme['base-text']};
+  }
+`;
