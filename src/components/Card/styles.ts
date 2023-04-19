@@ -1,8 +1,19 @@
 import styled from 'styled-components';
 
-export const CardContainer = styled.div`
+import { Link } from 'react-router-dom';
+
+export const CardContainer = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
   width: 415px;
   height: 260px;
+
+  border: 2px solid transparent;
+  border-radius: 10px;
+  text-decoration: none;
 
   padding: 32px;
 
@@ -11,6 +22,11 @@ export const CardContainer = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
+  }
+
+  &:hover {
+    cursor: pointer;
+    border: 2px solid ${({ theme }) => theme['base-label']};
   }
 `;
 
@@ -28,6 +44,8 @@ export const Title = styled.h1`
   width: 75%;
 
   color: ${({ theme }) => theme['base-title']};
+
+  text-align: start;
 
   @media (max-width: 768px) {
     font-size: 1.125rem;
@@ -54,6 +72,13 @@ export const CardBody = styled.p`
   line-height: 160%;
 
   margin-top: 20px;
+
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.625rem;
+  text-align: left;
+
+  color: ${({ theme }) => theme['base-text']};
 
   display: -webkit-box;
   -webkit-line-clamp: 4;
