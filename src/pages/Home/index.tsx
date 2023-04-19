@@ -15,6 +15,8 @@ export function Home() {
   const [user, setUser] = useState<IGithubApiAvatar>({} as IGithubApiAvatar);
   const [posts, setPosts] = useState<IPost[]>([]);
 
+  const totalPosts = posts.length ?? 0;
+
   useEffect(() => {
     // setIsLoadingData(true);
 
@@ -53,7 +55,7 @@ export function Home() {
     <>
       <ProfileBar user={user} />
 
-      <SearchBar />
+      <SearchBar totalPosts={totalPosts} />
 
       <CardSection>
         {posts.map((post) => (
