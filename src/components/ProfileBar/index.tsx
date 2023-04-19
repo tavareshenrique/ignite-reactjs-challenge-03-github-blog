@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 import * as Avatar from '@radix-ui/react-avatar';
 
 import {
@@ -8,8 +6,6 @@ import {
   FaBuilding,
   FaUserFriends,
 } from 'react-icons/fa';
-
-import api from '../../services/api';
 
 import { Badge, Link } from '../';
 
@@ -20,17 +16,9 @@ import {
   ProfileInfoGroup,
   ProfileName,
 } from './styles';
-import { IGithubApiAvatar } from './@interfaces';
+import { IProfileBarProps } from './@interfaces';
 
-export function ProfileBar() {
-  const [user, setUser] = useState<IGithubApiAvatar>({} as IGithubApiAvatar);
-
-  useEffect(() => {
-    api.get<IGithubApiAvatar>('/users/tavareshenrique').then((response) => {
-      setUser(response.data);
-    });
-  }, []);
-
+export function ProfileBar({ user }: IProfileBarProps) {
   return (
     <ProfileBarContainer>
       <Avatar.Root className="avatar-container">
