@@ -1,5 +1,5 @@
 import { HeaderContainer } from './styles';
 
 export function Header() {
-  return <HeaderContainer />;
+  return <HeaderContainer aria-hidden="true" />;
 }
