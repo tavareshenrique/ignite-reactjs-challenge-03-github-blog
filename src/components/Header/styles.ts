@@ -9,7 +9,7 @@ export const HeaderContainer = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  background-image: url('header-bg.png');
+  background-image: url('../../../public/header-bg.png');
   background-size: cover;
   background-position: center;
 `;
