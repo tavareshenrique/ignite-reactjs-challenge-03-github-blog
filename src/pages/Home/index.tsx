@@ -2,10 +2,8 @@ import { Card, ProfileBar, SearchBar } from '../../components';
 
 import { usePost } from '../../hooks/';
 
-import { CardSection } from './styles';
-
 export function Home() {
-  const { posts } = usePost();
+  const { posts, isLoadingPosts } = usePost();
 
   return (
     <>
@@ -13,11 +11,13 @@ export function Home() {
 
       <SearchBar />
 
-      <CardSection>
+      <Card.Root>
+        {isLoadingPosts && <Card.Skeleton />}
+
         {posts.map((post) => (
-          <Card key={post.id} post={post} />
+          <Card.Base key={post.id} post={post} />
         ))}
-      </CardSection>
+      </Card.Root>
     </>
   );
 }

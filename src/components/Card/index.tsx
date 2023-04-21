@@ -1,6 +1,9 @@
+import { CardSkeleton } from './CardSkeleton';
+
 import { ICardProps } from './@interfaces';
 
 import {
+  CardSection,
   CardBody,
   CardContainer,
   CardHeader,
@@ -8,7 +11,7 @@ import {
   Title,
 } from './styles';
 
-export function Card({ post }: ICardProps) {
+function Card({ post }: ICardProps) {
   return (
     <CardContainer to={post.link}>
       <CardHeader>
@@ -20,3 +23,11 @@ export function Card({ post }: ICardProps) {
     </CardContainer>
   );
 }
+
+const Root = CardSection;
+
+const Base = Card;
+
+const Skeleton = CardSkeleton;
+
+export { Root, Base, Skeleton };

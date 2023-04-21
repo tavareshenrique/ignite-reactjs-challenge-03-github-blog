@@ -2,6 +2,17 @@ import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
 
+export const CardSection = styled.main`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  grid-gap: 32px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
 export const CardContainer = styled(Link)`
   display: flex;
   flex-direction: column;

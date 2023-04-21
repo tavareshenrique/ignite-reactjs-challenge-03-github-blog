@@ -31,8 +31,6 @@ export function usePost() {
   }
 
   useEffect(() => {
-    setIsLoadingPosts(true);
-
     api
       .get<IGithubApiPosts[]>(
         '/repos/tavareshenrique/ignite-reactjs-challenge-03-github-blog/issues',

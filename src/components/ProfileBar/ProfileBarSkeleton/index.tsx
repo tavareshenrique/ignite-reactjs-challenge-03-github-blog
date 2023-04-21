@@ -1,4 +1,4 @@
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import { SkeletonBase } from '../..';
 
 import {
   ProfileBarContainer,
@@ -9,24 +9,24 @@ import {
 
 export default function ProfileBarSkeleton() {
   return (
-    <SkeletonTheme baseColor="#605f5f" highlightColor="#444">
+    <SkeletonBase.Root>
       <ProfileBarContainer>
-        <Skeleton height={148} width={148} />
+        <SkeletonBase.Skeleton height={148} width={148} />
 
         <ProfileInfoContent>
           <ProfileInfoGroup>
-            <Skeleton count={1} width={100} height={25} />
+            <SkeletonBase.Skeleton count={1} width={100} height={25} />
 
-            <Skeleton count={1} width={100} height={25} />
+            <SkeletonBase.Skeleton count={1} width={100} height={25} />
           </ProfileInfoGroup>
 
           <ProfileDescription>
-            <Skeleton count={2} />
+            <SkeletonBase.Skeleton count={2} />
           </ProfileDescription>
 
-          <Skeleton count={3} />
+          <SkeletonBase.Skeleton count={3} />
         </ProfileInfoContent>
       </ProfileBarContainer>
-    </SkeletonTheme>
+    </SkeletonBase.Root>
   );
 }
