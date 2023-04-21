@@ -9,7 +9,7 @@ import {
   SearchBarInput,
 } from './styles';
 
-export function SearchBar({ totalPosts }: ISearchBarProps) {
+export function SearchBar({ totalPosts, searchPosts }: ISearchBarProps) {
   const totalPostsText = totalPosts === 1 ? 'publicação' : 'publicações';
 
   return (
@@ -24,7 +24,12 @@ export function SearchBar({ totalPosts }: ISearchBarProps) {
         </PostCountText>
       </SearchBarContent>
 
-      <SearchBarInput placeholder="Buscar conteúdo" type="text" id="search" />
+      <SearchBarInput
+        placeholder="Buscar conteúdo"
+        type="text"
+        id="search"
+        onChange={(event) => searchPosts(event.target.value)}
+      />
     </SearchBarContainer>
   );
 }
