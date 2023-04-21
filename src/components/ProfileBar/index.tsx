@@ -7,7 +7,7 @@ import {
   FaUserFriends,
 } from 'react-icons/fa';
 
-import { useHome } from '../../hooks';
+import { useUser } from '../../hooks';
 
 import { Badge, Link } from '../';
 
@@ -20,7 +20,7 @@ import {
 } from './styles';
 
 export function ProfileBar() {
-  const { user } = useHome();
+  const { user } = useUser();
 
   return (
     <ProfileBarContainer>

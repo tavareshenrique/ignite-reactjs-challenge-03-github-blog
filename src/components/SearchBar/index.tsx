@@ -1,6 +1,6 @@
 import * as Label from '@radix-ui/react-label';
 
-import { useHome } from '../../hooks';
+import { usePost } from '../../hooks';
 
 import {
   SearchBarContainer,
@@ -10,7 +10,7 @@ import {
 } from './styles';
 
 export function SearchBar() {
-  const { totalPosts, searchPosts } = useHome();
+  const { totalPosts, searchPosts } = usePost();
 
   const totalPostsText = totalPosts === 1 ? 'publicação' : 'publicações';
 

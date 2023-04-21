@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 
-import api from '../../../services/api';
+import api from '../../services/api';
 
-import { useDebounce } from '../../useDebounce';
+import { useDebounce } from '../useDebounce';
 
-import { IUser, IGithubApiUser, IGithubApiPosts, IPost } from './@interfaces';
+import { IGithubApiPosts, IPost } from './@interfaces';
 
-export function useHome() {
-  // const [isLoadingData, setIsLoadingData] = useState(true);
-  const [user, setUser] = useState<IUser>({} as IUser);
+export function usePost() {
+  const [isLoadingPosts, setIsLoadingPosts] = useState(true);
   const [posts, setPosts] = useState<IPost[]>([]);
   const [initialPosts, setInitialPosts] = useState<IPost[]>([]);
 
@@ -32,18 +31,14 @@ export function useHome() {
   }
 
   useEffect(() => {
-    // setIsLoadingData(true);
+    setIsLoadingPosts(true);
 
-    Promise.all([
-      api.get<IGithubApiUser>('/users/tavareshenrique'),
-      api.get<IGithubApiPosts[]>(
+    api
+      .get<IGithubApiPosts[]>(
         '/repos/tavareshenrique/ignite-reactjs-challenge-03-github-blog/issues',
-      ),
-    ])
-      .then((responses) => {
-        const [userResponse, postsResponse] = responses;
-
-        const parsingPosts = postsResponse.data.map((post) => {
+      )
+      .then((response) => {
+        const parsingPosts = response.data.map((post) => {
           return {
             id: post.id,
             title: post.title,
@@ -55,29 +50,21 @@ export function useHome() {
           };
         });
 
-        const parsingUser = {
-          avatar_url: userResponse.data.avatar_url,
-          bio: userResponse.data.bio,
-          company: userResponse.data.company,
-          followers: userResponse.data.followers,
-          profile_url: userResponse.data.html_url,
-          username: userResponse.data.login,
-          name: userResponse.data.name,
-        };
-
-        setUser(parsingUser);
         setPosts(parsingPosts);
         setInitialPosts(parsingPosts);
       })
+      .catch((error) => {
+        console.log(error);
+      })
       .finally(() => {
-        // setIsLoadingData(false);
+        setIsLoadingPosts(false);
       });
   }, []);
 
   return {
-    user,
     posts,
     totalPosts,
+    isLoadingPosts,
     searchPosts: searchPostsDebounced,
   };
 }

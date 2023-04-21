@@ -1,2 +1,3 @@
 export { useDebounce } from './useDebounce';
-export { useHome } from './pages/useHome';
+export { useUser } from './useUser';
+export { usePost } from './usePost';

@@ -1,11 +1,11 @@
 import { Card, ProfileBar, SearchBar } from '../../components';
 
-import { useHome } from '../../hooks/';
+import { usePost } from '../../hooks/';
 
 import { CardSection } from './styles';
 
 export function Home() {
-  const { posts } = useHome();
+  const { posts } = usePost();
 
   return (
     <>
