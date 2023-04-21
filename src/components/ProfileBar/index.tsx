@@ -11,6 +11,8 @@ import { useUser } from '../../hooks';
 
 import { Badge, Link } from '../';
 
+import ProfileBarSkeleton from './ProfileBarSkeleton';
+
 import {
   ProfileBarContainer,
   ProfileDescription,
@@ -20,7 +22,11 @@ import {
 } from './styles';
 
 export function ProfileBar() {
-  const { user } = useUser();
+  const { user, isLoadingUser } = useUser();
+
+  if (isLoadingUser) {
+    return <ProfileBarSkeleton />;
+  }
 
   return (
     <ProfileBarContainer>
@@ -45,6 +51,7 @@ export function ProfileBar() {
 
           <ProfileName>{user.name}</ProfileName>
         </ProfileInfoGroup>
+
         <ProfileDescription>{user.bio}</ProfileDescription>
 
         <Badge.Root>

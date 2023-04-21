@@ -9,8 +9,6 @@ export function useUser() {
   const [user, setUser] = useState<IUser>({} as IUser);
 
   useEffect(() => {
-    setIsLoadingUser(true);
-
     api
       .get<IGithubApiUser>('/users/tavareshenrique')
       .then((response) => {
