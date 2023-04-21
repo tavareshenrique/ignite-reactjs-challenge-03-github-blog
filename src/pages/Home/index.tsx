@@ -1,5 +1,3 @@
-import emptyImage from '../../assets/empty.svg';
-
 import { Card, ProfileBar, SearchBar } from '../../components';
 
 import { usePost } from '../../hooks/';
@@ -13,13 +11,11 @@ export function Home() {
 
       <SearchBar totalPosts={totalPosts} searchPosts={searchPosts} />
 
-      {posts.length === 0 ? (
+      {posts.length === 0 && !isLoadingPosts ? (
         <Card.Empty />
       ) : (
         <Card.Root>
           {isLoadingPosts && <Card.Skeleton />}
-
-          {posts.length === 0 && <img src={emptyImage} alt="" />}
 
           {posts.map((post) => (
             <Card.Base key={post.id} post={post} />
