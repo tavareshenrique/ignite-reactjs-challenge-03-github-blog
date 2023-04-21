@@ -1,6 +1,6 @@
 import * as Label from '@radix-ui/react-label';
 
-import { ISearchBarProps } from './@interfaces';
+import { useHome } from '../../hooks';
 
 import {
   SearchBarContainer,
@@ -9,7 +9,9 @@ import {
   SearchBarInput,
 } from './styles';
 
-export function SearchBar({ totalPosts, searchPosts }: ISearchBarProps) {
+export function SearchBar() {
+  const { totalPosts, searchPosts } = useHome();
+
   const totalPostsText = totalPosts === 1 ? 'publicação' : 'publicações';
 
   return (

@@ -7,6 +7,8 @@ import {
   FaUserFriends,
 } from 'react-icons/fa';
 
+import { useHome } from '../../hooks';
+
 import { Badge, Link } from '../';
 
 import {
@@ -16,15 +18,16 @@ import {
   ProfileInfoGroup,
   ProfileName,
 } from './styles';
-import { IProfileBarProps } from './@interfaces';
 
-export function ProfileBar({ user }: IProfileBarProps) {
+export function ProfileBar() {
+  const { user } = useHome();
+
   return (
     <ProfileBarContainer>
       <Avatar.Root className="avatar-container">
         <Avatar.Image
           className="avatar-container__image"
-          src={`http://github.com/${user.login}.png`}
+          src={`http://github.com/${user.username}.png`}
           alt="Provavelmente é a foto de uma pessoa."
         />
       </Avatar.Root>
@@ -32,7 +35,7 @@ export function ProfileBar({ user }: IProfileBarProps) {
       <ProfileInfoContent>
         <ProfileInfoGroup>
           <Link
-            href={user.html_url}
+            href={user.profile_url}
             role="link"
             aria-label={`Acesse ao perfil do Github do ${user.name}.`}
           >
@@ -48,7 +51,7 @@ export function ProfileBar({ user }: IProfileBarProps) {
           <Badge.Badge
             ariaLabel={`Nome de usuário do Github do ${user.name}.`}
             icon={<FaGithub size={16} />}
-            text={user.login}
+            text={user.username}
           />
           <Badge.Badge
             ariaLabel={`Empresa onde o ${user.name} trabalha.`}
