@@ -13,6 +13,23 @@ export const CardSection = styled.main`
   }
 `;
 
+export const CardContainerEmpty = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    font-size: 1.25rem;
+    font-weight: bold;
+    line-height: 160%;
+    text-align: center;
+    color: ${({ theme }) => theme['base-title']};
+
+    margin-top: 1.5rem;
+  }
+`;
+
 export const CardContainer = styled(Link)`
   display: flex;
   flex-direction: column;

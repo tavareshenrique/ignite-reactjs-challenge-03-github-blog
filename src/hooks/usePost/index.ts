@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 import api from '../../services/api';
 
@@ -21,13 +22,11 @@ export function usePost() {
       return setPosts(initialPosts);
     }
 
-    const filteredPosts = posts.filter((post) => {
+    const filteredPosts = initialPosts.filter((post) => {
       return post.title.toLowerCase().includes(search.toLowerCase());
     });
 
     setPosts(filteredPosts);
-
-    return filteredPosts;
   }
 
   useEffect(() => {
@@ -43,6 +42,7 @@ export function usePost() {
             body: post.body.slice(0, 200),
             publishTime: formatDistanceToNow(new Date(post.created_at), {
               addSuffix: true,
+              locale: ptBR,
             }),
             link: 'article/' + post.id,
           };
