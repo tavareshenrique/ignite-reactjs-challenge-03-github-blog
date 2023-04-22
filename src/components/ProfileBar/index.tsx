@@ -22,7 +22,7 @@ import {
 } from './styles';
 
 export function ProfileBar() {
-  const { user, isLoadingUser } = useUser();
+  const { isLoadingUser, user } = useUser();
 
   if (isLoadingUser) {
     return <ProfileBarSkeleton />;
@@ -33,7 +33,7 @@ export function ProfileBar() {
       <Avatar.Root className="avatar-container">
         <Avatar.Image
           className="avatar-container__image"
-          src={`http://github.com/${user.username}.png`}
+          src={`http://github.com/${user?.username}.png`}
           alt="Provavelmente é a foto de uma pessoa."
         />
       </Avatar.Root>
@@ -41,35 +41,35 @@ export function ProfileBar() {
       <ProfileInfoContent>
         <ProfileInfoGroup>
           <Link
-            href={user.profile_url}
+            href={user?.profile_url || '/'}
             role="link"
-            aria-label={`Acesse ao perfil do Github do ${user.name}.`}
+            aria-label={`Acesse ao perfil do Github do ${user?.name}.`}
             target="_blank"
           >
             Github
             <FaExternalLinkAlt size={12} />
           </Link>
 
-          <ProfileName>{user.name}</ProfileName>
+          <ProfileName>{user?.name}</ProfileName>
         </ProfileInfoGroup>
 
-        <ProfileDescription>{user.bio}</ProfileDescription>
+        <ProfileDescription>{user?.bio}</ProfileDescription>
 
         <Badge.Root>
           <Badge.Badge
-            ariaLabel={`Nome de usuário do Github do ${user.name}.`}
+            ariaLabel={`Nome de usuário do Github do ${user?.name}.`}
             icon={<FaGithub size={16} />}
-            text={user.username}
+            text={user?.username || 'Sem nome de usuário'}
           />
           <Badge.Badge
-            ariaLabel={`Empresa onde o ${user.name} trabalha.`}
+            ariaLabel={`Empresa onde o ${user?.name} trabalha.`}
             icon={<FaBuilding size={16} />}
-            text={user.company}
+            text={user?.company || 'Sem empresa'}
           />
           <Badge.Badge
-            ariaLabel={`Quantidade de seguidores do ${user.name}.`}
+            ariaLabel={`Quantidade de seguidores do ${user?.name}.`}
             icon={<FaUserFriends size={16} />}
-            text={`${user.followers} seguidores`}
+            text={`${user?.followers} seguidores`}
           />
         </Badge.Root>
       </ProfileInfoContent>

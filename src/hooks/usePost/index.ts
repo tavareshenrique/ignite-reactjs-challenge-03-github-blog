@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import { formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
@@ -9,27 +10,10 @@ import { useDebounce } from '../useDebounce';
 import { IGithubApiPosts, IPost } from './@interfaces';
 
 export function usePost() {
-  const [isLoadingPosts, setIsLoadingPosts] = useState(true);
-  const [posts, setPosts] = useState<IPost[]>([]);
   const [initialPosts, setInitialPosts] = useState<IPost[]>([]);
+  const [posts, setPosts] = useState<IPost[]>([]);
 
-  const totalPosts = posts.length ?? 0;
-
-  const searchPostsDebounced = useDebounce(searchPosts, 500);
-
-  function searchPosts(search: string) {
-    if (search === '') {
-      return setPosts(initialPosts);
-    }
-
-    const filteredPosts = initialPosts.filter((post) => {
-      return post.title.toLowerCase().includes(search.toLowerCase());
-    });
-
-    setPosts(filteredPosts);
-  }
-
-  useEffect(() => {
+  const { isLoading, data } = useQuery('postsData', () =>
     api
       .get<IGithubApiPosts[]>(
         '/repos/tavareshenrique/ignite-reactjs-challenge-03-github-blog/issues',
@@ -48,21 +32,40 @@ export function usePost() {
           };
         });
 
-        setPosts(parsingPosts);
         setInitialPosts(parsingPosts);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setIsLoadingPosts(false);
-      });
-  }, []);
+
+        return parsingPosts;
+      }),
+  );
+
+  useEffect(() => {
+    if (data && data.length > 0) {
+      setPosts(data);
+    }
+  }, [data]);
+
+  const totalPosts = posts.length ?? 0;
+
+  const searchPostsDebounced = useDebounce(searchPosts, 500);
+
+  function searchPosts(search: string) {
+    if (search === '') {
+      return setPosts(initialPosts);
+    }
+
+    const filteredPosts = initialPosts.filter((post) => {
+      return post.title.toLowerCase().includes(search.toLowerCase());
+    });
+
+    console.log(filteredPosts);
+
+    setPosts(filteredPosts);
+  }
 
   return {
     posts,
     totalPosts,
-    isLoadingPosts,
+    isLoadingPosts: isLoading,
     searchPosts: searchPostsDebounced,
   };
 }
