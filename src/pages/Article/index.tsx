@@ -19,7 +19,7 @@ export function Article() {
             <FaChevronLeft size={12} />
             <span>Voltar</span>
           </Link>
-          <Link href="/">
+          <Link href="/" target="_blank">
             <span>VER NO GITHUB</span>
             <FaExternalLinkAlt size={12} />
           </Link>

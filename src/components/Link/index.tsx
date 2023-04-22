@@ -1,8 +1,8 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import { AnchorHTMLAttributes, ReactNode } from 'react';
 
 import { LinkContainer } from './styles';
 
-interface ILinkProps extends HTMLAttributes<HTMLAnchorElement> {
+interface ILinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   children: ReactNode;
   href: string;
 }

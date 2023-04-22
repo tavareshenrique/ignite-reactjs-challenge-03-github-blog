@@ -44,6 +44,7 @@ export function ProfileBar() {
             href={user.profile_url}
             role="link"
             aria-label={`Acesse ao perfil do Github do ${user.name}.`}
+            target="_blank"
           >
             Github
             <FaExternalLinkAlt size={12} />
