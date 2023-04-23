@@ -1,4 +1,4 @@
-import { memo } from 'react';
+// import { memo } from 'react';
 import * as Avatar from '@radix-ui/react-avatar';
 
 import {
@@ -22,7 +22,7 @@ import {
   ProfileName,
 } from './styles';
 
-function ProfileBar() {
+export function ProfileBar() {
   const { isLoadingUser, user } = useUser();
 
   if (isLoadingUser) {
@@ -77,7 +77,3 @@ function ProfileBar() {
     </ProfileBarContainer>
   );
 }
-
-export default memo(ProfileBar, (prevProps, nextProps) =>
-  Object.is(prevProps, nextProps),
-);
