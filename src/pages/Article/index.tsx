@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import remarkGfm from 'remark-gfm';
+
 import {
   FaCalendarDay,
   FaChevronLeft,
@@ -43,15 +45,10 @@ export function Article() {
       setPost(post);
     }
 
-    console.log('slug', slug);
-    console.log('post', post);
-
     if (slug && post === null) {
       fetchPost();
     }
   }, [findPostBySlug, post, slug]);
-
-  console.log('post', post);
 
   return (
     <>
@@ -90,7 +87,8 @@ export function Article() {
 
       <ArticleBody>
         <Markdown
-          children={post?.body || ''}
+          children={post?.body || 'Carregando...'}
+          remarkPlugins={[remarkGfm]}
           components={{
             img: ({ node, ...props }) => (
               <img style={{ maxWidth: '100%' }} {...props} />
