@@ -7,36 +7,58 @@ import api from '../../services/api';
 
 import { useDebounce } from '../useDebounce';
 
-import { IGithubApiPosts, IPost } from './@interfaces';
+import {
+  IGithubApiPost,
+  IGithubApiPosts,
+  IPost,
+  IPostData,
+} from './@interfaces';
 
 export function usePost() {
   const [initialPosts, setInitialPosts] = useState<IPost[]>([]);
   const [posts, setPosts] = useState<IPost[]>([]);
+  const [isLoadingPostBySlug, setIsLoadingPostBySlug] = useState(false);
 
-  const { isLoading, data } = useQuery('postsData', () =>
-    api
-      .get<IGithubApiPosts[]>(
-        '/repos/tavareshenrique/ignite-reactjs-challenge-03-github-blog/issues',
-      )
-      .then((response) => {
-        const parsingPosts = response.data.map((post) => {
-          return {
-            id: post.id,
-            title: post.title,
-            body: post.body.slice(0, 200),
-            publishTime: formatDistanceToNow(new Date(post.created_at), {
+  const { isLoading, data } = useQuery<IPost[]>({
+    queryKey: 'postsData',
+    queryFn: async () => {
+      return api
+        .get<IGithubApiPosts[]>(
+          '/repos/tavareshenrique/ignite-reactjs-challenge-03-github-blog/issues',
+        )
+        .then((response) => {
+          const parsingPosts = response.data.map((post) => {
+            const { id, number, title, body } = post;
+
+            const bodyFormatted = body.slice(0, 200);
+
+            const slug = title.toLowerCase().replace(/ /g, '-');
+
+            const publishTime = formatDistanceToNow(new Date(post.created_at), {
               addSuffix: true,
               locale: ptBR,
-            }),
-            link: 'article/' + post.id,
-          };
+            });
+
+            const link = `article/${slug}`;
+
+            return {
+              id,
+              issue_number: number,
+              title,
+              body: bodyFormatted,
+              publishTime,
+              slug,
+              link,
+            } as IPost;
+          });
+
+          setInitialPosts(parsingPosts);
+
+          return parsingPosts;
         });
-
-        setInitialPosts(parsingPosts);
-
-        return parsingPosts;
-      }),
-  );
+    },
+    refetchOnWindowFocus: false,
+  });
 
   useEffect(() => {
     if (data && data.length > 0) {
@@ -62,10 +84,44 @@ export function usePost() {
     setPosts(filteredPosts);
   }
 
+  async function findPostBySlug(slug: string) {
+    setIsLoadingPostBySlug(true);
+
+    const issueNumber = posts.find((post) => post.slug === slug)?.issue_number;
+
+    if (!issueNumber) {
+      return null;
+    }
+
+    const post = await api.get<IGithubApiPost>(
+      `/repos/tavareshenrique/ignite-reactjs-challenge-03-github-blog/issues/${String(
+        issueNumber,
+      )}`,
+    );
+
+    const parsedPost = {
+      title: post.data.title,
+      publishTime: formatDistanceToNow(new Date(post.data.created_at), {
+        addSuffix: true,
+        locale: ptBR,
+      }),
+      comments: post.data.comments,
+      body: post.data.body,
+      username: post.data.user.login,
+      link: post.data.html_url,
+    } satisfies IPostData;
+
+    setIsLoadingPostBySlug(false);
+
+    return parsedPost;
+  }
+
   return {
     posts,
     totalPosts,
     isLoadingPosts: isLoading,
     searchPosts: searchPostsDebounced,
+    findPostBySlug,
+    isLoadingPostBySlug,
   };
 }
