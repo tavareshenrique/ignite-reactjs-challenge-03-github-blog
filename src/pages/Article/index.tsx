@@ -12,7 +12,13 @@ import { usePost } from '../../hooks';
 
 import { Link, Badge } from '../../components';
 
-import { ArticleBody, ArticleHeader, LinksContent, Title } from './styles';
+import {
+  ArticleBody,
+  ArticleHeader,
+  LinksContent,
+  Markdown,
+  Title,
+} from './styles';
 import { IPostData } from '../../hooks/usePost/@interfaces';
 import { useEffect, useState } from 'react';
 
@@ -82,7 +88,14 @@ export function Article() {
       </ArticleHeader>
 
       <ArticleBody>
-        <p>{post?.body}</p>
+        <Markdown
+          children={post?.body || ''}
+          components={{
+            img: ({ node, ...props }) => (
+              <img style={{ maxWidth: '100%' }} {...props} />
+            ),
+          }}
+        />
       </ArticleBody>
     </>
   );

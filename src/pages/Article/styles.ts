@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import ReactMarkdown from 'react-markdown';
+
 export const ArticleHeader = styled.header`
   padding: 32px;
   margin-top: -8rem;
@@ -29,12 +31,18 @@ export const ArticleBody = styled.main`
   margin-top: 40px;
 
   padding: 0 32px;
+`;
 
-  p {
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 25.6px;
+export const Markdown = styled(ReactMarkdown)`
+  white-space: break-spaces;
 
-    color: ${({ theme }) => theme['base-text']};
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 25.6px;
+
+  color: ${({ theme }) => theme['base-text']};
+
+  a {
+    color: ${({ theme }) => theme.blue};
   }
 `;
