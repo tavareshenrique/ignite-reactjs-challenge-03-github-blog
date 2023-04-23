@@ -29,7 +29,6 @@ export const Title = styled.h1`
 
 export const ArticleBody = styled.main`
   margin-top: 40px;
-
   padding: 0 32px;
 `;
 
