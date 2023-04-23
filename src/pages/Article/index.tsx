@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
@@ -12,15 +13,15 @@ import { usePost } from '../../hooks';
 
 import { Link, Badge } from '../../components';
 
+import { IPostData } from '../../hooks/usePost/@interfaces';
+
 import {
   ArticleBody,
   ArticleHeader,
   LinksContent,
-  Markdown,
   Title,
+  Markdown,
 } from './styles';
-import { IPostData } from '../../hooks/usePost/@interfaces';
-import { useEffect, useState } from 'react';
 
 export function Article() {
   const { slug } = useParams<{ slug: string }>();
