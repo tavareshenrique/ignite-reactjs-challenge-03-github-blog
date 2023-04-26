@@ -23,9 +23,7 @@ export function usePost() {
     queryKey: 'postsData',
     queryFn: async () => {
       return api
-        .get<IGithubApiPosts[]>(
-          '/repos/tavareshenrique/ignite-reactjs-challenge-03-github-blog/issues',
-        )
+        .get<IGithubApiPosts[]>(import.meta.env.VITE_REPO_ENDPOINT)
         .then((response) => {
           const parsingPosts = response.data.map((post) => {
             const { id, number, title, body } = post;
@@ -94,9 +92,7 @@ export function usePost() {
     }
 
     const post = await api.get<IGithubApiPost>(
-      `/repos/tavareshenrique/ignite-reactjs-challenge-03-github-blog/issues/${String(
-        issueNumber,
-      )}`,
+      `${import.meta.env.VITE_REPO_ENDPOINT}/${String(issueNumber)}`,
     );
 
     const parsedPost = {

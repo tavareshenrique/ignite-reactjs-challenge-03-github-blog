@@ -9,7 +9,7 @@ export function useUser() {
     queryKey: 'userData',
     queryFn: async () => {
       return api
-        .get<IGithubApiUser>('/users/tavareshenrique')
+        .get<IGithubApiUser>(import.meta.env.VITE_USER_ENDPOINT)
         .then((response) => {
           const parsingUser = {
             avatar_url: response.data.avatar_url,
