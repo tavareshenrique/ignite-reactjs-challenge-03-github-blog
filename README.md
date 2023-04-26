@@ -4,4 +4,4 @@
 [] Create ENV to EndPoint Routes;
 [] Remmove All Todo's;
 [] Make a Solution for "Não informado.";
-[] Create Skeleton to Article Page;
+[X] Create Skeleton to Article Page;
