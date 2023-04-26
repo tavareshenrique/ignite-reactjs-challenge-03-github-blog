@@ -14,7 +14,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: './index.html',
-        404: './src/pages/NotFound/index.tsx',
+        error: './src/pages/NotFound/index.tsx',
       },
     },
   },
