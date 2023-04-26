@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { Helmet } from 'react-helmet';
 
@@ -32,16 +32,11 @@ import {
 
 export function Article() {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
 
   const { findPostBySlug, isLoadingPostBySlug } = usePost();
 
   const [post, setPost] = useState<IPostData | null>(null);
-
-  // if (!slug) {
-  //   // TODO: Not found page here
-
-  //   return <h1>404 - Not Found</h1>;
-  // }
 
   useEffect(() => {
     async function fetchPost() {
@@ -54,6 +49,10 @@ export function Article() {
       fetchPost();
     }
   }, [findPostBySlug, post, slug]);
+
+  if (!slug || !post) {
+    navigate('/404');
+  }
 
   if (isLoadingPostBySlug) {
     return <ArticleSkeleton />;

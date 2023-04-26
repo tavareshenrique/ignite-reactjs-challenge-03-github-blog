@@ -3,6 +3,7 @@ import DefaultLayout from './layout/DefaultLayout';
 
 import { Home } from './pages/Home';
 import { Article } from './pages/Article';
+import { NotFound } from './pages/NotFound';
 
 export function Router() {
   return (
@@ -11,6 +12,7 @@ export function Router() {
         <Route path="/" element={<Home />} />
         <Route path="/article/:slug" element={<Article />} />
       </Route>
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
