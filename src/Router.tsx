@@ -12,6 +12,7 @@ export function Router() {
         <Route path="/" element={<Home />} />
         <Route path="/article/:slug" element={<Article />} />
       </Route>
+      <Route path="/404" element={<NotFound />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
