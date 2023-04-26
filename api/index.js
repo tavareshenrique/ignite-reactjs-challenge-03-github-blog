@@ -1,4 +1,3 @@
 module.exports = (req, res) => {
-  // redirect to page NotFound
-  res.redirect('/404');
+  res.status(404).json({ message: 'Not Found' });
 };
