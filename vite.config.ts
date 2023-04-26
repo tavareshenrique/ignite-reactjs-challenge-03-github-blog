@@ -9,4 +9,13 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  build: {
+    outDir: 'dist',
+    rollupOptions: {
+      input: {
+        main: './index.html',
+        404: './src/pages/NotFound/index.tsx',
+      },
+    },
+  },
 });
