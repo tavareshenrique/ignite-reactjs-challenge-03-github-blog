@@ -1,5 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
+
 import { useParams } from 'react-router-dom';
+
+import { Helmet } from 'react-helmet';
 
 import remarkGfm from 'remark-gfm';
 
@@ -15,6 +18,8 @@ import { usePost } from '../../hooks';
 
 import { Link, Badge } from '../../components';
 
+import { ArticleSkeleton } from './ArticleSkeleton';
+
 import { IPostData } from '../../hooks/usePost/@interfaces';
 
 import {
@@ -28,7 +33,7 @@ import {
 export function Article() {
   const { slug } = useParams<{ slug: string }>();
 
-  const { findPostBySlug /* isLoadingPostBySlug */ } = usePost();
+  const { findPostBySlug, isLoadingPostBySlug } = usePost();
 
   const [post, setPost] = useState<IPostData | null>(null);
 
@@ -50,8 +55,16 @@ export function Article() {
     }
   }, [findPostBySlug, post, slug]);
 
+  if (isLoadingPostBySlug) {
+    return <ArticleSkeleton />;
+  }
+
   return (
     <>
+      <Helmet>
+        <title>Github Blog | {post?.title || ''}</title>
+      </Helmet>
+
       <ArticleHeader>
         <LinksContent>
           <Link href="/">

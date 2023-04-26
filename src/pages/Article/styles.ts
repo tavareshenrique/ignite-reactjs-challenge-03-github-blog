@@ -4,7 +4,8 @@ import ReactMarkdown from 'react-markdown';
 
 export const ArticleHeader = styled.header`
   padding: 32px;
-  margin-top: -8rem;
+
+  margin: -8rem 0 40px 0;
 
   background-color: ${({ theme }) => theme['base-profile']};
   border-radius: 10px;
@@ -28,7 +29,6 @@ export const Title = styled.h1`
 `;
 
 export const ArticleBody = styled.main`
-  margin-top: 40px;
   padding: 0 32px;
 `;
 

@@ -62,6 +62,8 @@ export const CardHeader = styled.header`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  width: 100%;
 `;
 
 export const Title = styled.h1`

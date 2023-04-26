@@ -1,4 +1,4 @@
-import { IPost } from '../../pages/Home/@interfaces';
+import { IPost } from '../../hooks/usePost/@interfaces';
 
 export interface ICardProps {
   post: IPost;

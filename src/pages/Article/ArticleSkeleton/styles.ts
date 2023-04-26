@@ -1,15 +1,10 @@
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.header`
-  width: 100%;
-  height: 296px;
-
+export const BadgesContainerSkeleton = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 
-  picture {
-    width: 100%;
-  }
+  margin-top: 24px;
 `;
