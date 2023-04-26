@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { Helmet } from 'react-helmet';
@@ -20,8 +18,6 @@ import { Link, Badge } from '../../components';
 
 import { ArticleSkeleton } from './ArticleSkeleton';
 
-import { IPostData } from '../../hooks/usePost/@interfaces';
-
 import {
   ArticleBody,
   ArticleHeader,
@@ -29,39 +25,33 @@ import {
   Title,
   Markdown,
 } from './styles';
+import { useEffect } from 'react';
 
 export function Article() {
   const { slug } = useParams<{ slug: string }>();
+
   const navigate = useNavigate();
 
-  const { findPostBySlug, isLoadingPostBySlug } = usePost();
-
-  const [post, setPost] = useState<IPostData | null>(null);
+  const { isLoadingPostBySlug, selectedPost } = usePost(slug);
 
   useEffect(() => {
-    async function fetchPost() {
-      const post = await findPostBySlug(slug as string);
+    const timer = setTimeout(() => {
+      if (!selectedPost) {
+        navigate('/404');
+      }
+    }, 5000);
 
-      setPost(post);
-    }
+    return () => clearTimeout(timer);
+  }, [isLoadingPostBySlug, navigate, selectedPost]);
 
-    if (slug && post === null) {
-      fetchPost();
-    }
-  }, [findPostBySlug, post, slug]);
-
-  if (!slug || !post) {
-    navigate('/404');
-  }
-
-  if (isLoadingPostBySlug) {
+  if (isLoadingPostBySlug || !selectedPost) {
     return <ArticleSkeleton />;
   }
 
   return (
     <>
       <Helmet>
-        <title>Github Blog | {post?.title || ''}</title>
+        <title>Github Blog | {selectedPost?.title || ''}</title>
       </Helmet>
 
       <ArticleHeader>
@@ -70,36 +60,36 @@ export function Article() {
             <FaChevronLeft size={12} />
             <span>VOLTAR</span>
           </Link>
-          <Link href={post?.link || '/'} target="_blank">
+          <Link href={selectedPost?.link || '/'} target="_blank">
             <span>VER NO GITHUB</span>
             <FaExternalLinkAlt size={12} />
           </Link>
         </LinksContent>
 
-        <Title>{post?.title}</Title>
+        <Title>{selectedPost?.title}</Title>
 
         <Badge.Root>
           <Badge.Badge
             ariaLabel="Nome de usuário no Github"
             icon={<FaGithub size={16} />}
-            text={post?.username || 'Não informado'}
+            text={selectedPost?.username || 'Não informado'}
           />
           <Badge.Badge
             ariaLabel="Foi publicado há 1 dia."
             icon={<FaCalendarDay size={16} />}
-            text={post?.publishTime || 'Não informado'}
+            text={selectedPost?.publishTime || 'Não informado'}
           />
           <Badge.Badge
             ariaLabel="Possui 5 comentários."
             icon={<FaComment size={16} />}
-            text={`${post?.comments} comentarios`}
+            text={`${selectedPost?.comments} comentarios`}
           />
         </Badge.Root>
       </ArticleHeader>
 
       <ArticleBody>
         <Markdown
-          children={post?.body || 'Carregando...'}
+          children={selectedPost?.body || 'Carregando...'}
           remarkPlugins={[remarkGfm]}
           components={{
             img: ({ node, ...props }) => (
